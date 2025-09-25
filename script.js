@@ -22,9 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 groups.forEach(group => {
                     group.classList.remove('paused');
                 });
-            }, 3000); // 3 segundos de pausa
+            }, 2000); // 3 segundos de pausa
 
             carousel.dataset.pauseTimer = newTimer;
         });
     });
 });
+
