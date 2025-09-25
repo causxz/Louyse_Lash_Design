@@ -15,7 +15,6 @@ h1, h2, h3 {
     font-family: 'Playfair Display', serif; /* <-- FONTE PARA TÍTULOS */
 }
 
-/* Um truque para melhorar a performance de rolagem */
 * {
     box-sizing: border-box;
 }
@@ -24,18 +23,18 @@ h1, h2, h3 {
 /* --- CABEÇALHO (HEADER) --- */
 /* ========================================= */
 header {
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente para legibilidade */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 5%;
     border-bottom: 1px solid #EAD1D7;
-    position: sticky; /* O cabeçalho fica fixo no topo ao rolar */
+    position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo do header */
+    backdrop-filter: blur(5px);
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza a logo, já que o botão foi removido */
     align-items: center;
     gap: 20px;
 }
@@ -45,23 +44,6 @@ nav {
     width: auto;
 }
 
-/* .botao-agendamento {
-    color: #D9869A;
-    border: 1px solid #D9869A;
-    padding: 8px 16px;
-    font-size: 13px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-align: center;
-}
-
-.botao-agendamento:hover {
-    background-color: #D9869A;
-    color: #fff;
-} */
-
 /* ========================================= */
 /* --- SEÇÃO PRINCIPAL (HERO) --- */
 /* ========================================= */
@@ -69,7 +51,7 @@ nav {
     display: flex;
     align-items: center;
     padding: 60px 5%;
-    min-height: 80vh; /* Ocupa boa parte da tela inicial */
+    min-height: 80vh;
 }
 
 .hero-text {
@@ -98,17 +80,16 @@ nav {
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
-     display: flex; /* Transforma o botão em um container flexível */
-    align-items: center; /* Alinha verticalmente o ícone e o texto */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
     width: fit-content;
 }
 
 .botao-instagram .instagram-icon {
-    width: 20px; /* Tamanho do ícone */
-    height: 20px; /* Mantém a proporção */
-    vertical-align: middle; /* Ajuda a alinhar com o texto, se precisar */
+    width: 20px;
+    height: 20px;
 }
 
 .botao-instagram:hover {
@@ -116,11 +97,9 @@ nav {
     color: #E1306C;
 }
 
-
-
 .hero-image {
     flex: 1;
-    padding-left: 40px; /* Espaço entre o texto e a imagem */
+    padding-left: 40px;
 }
 
 .hero-image img {
@@ -129,13 +108,12 @@ nav {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-
 /* ========================================= */
 /* --- SEÇÕES GENÉRICAS --- */
 /* ========================================= */
 section {
     padding: 60px 5%;
-    margin: 20px 0; /* Espaçamento entre as seções */
+    margin: 20px 0;
 }
 
 #servicos h2, #sobre h2, #espaco h2 {
@@ -143,15 +121,15 @@ section {
     font-size: 36px;
     margin-bottom: 40px;
 }
+
 #servicos h3 {
     text-align: left;
-    margin-top: 30px; /* Espaço extra acima de cada título de serviço */
+    margin-top: 30px;
 }
 
 /* ========================================= */
-/* --- ESTILOS DA SEÇÃO SOBRE MIM (NOVO) --- */
+/* --- ESTILOS DA SEÇÃO SOBRE MIM --- */
 /* ========================================= */
-
 .sobre-imagem-unica {
     display: flex;
     justify-content: center;
@@ -167,7 +145,6 @@ section {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-
 /* ========================================= */
 /* --- SEÇÃO ESPAÇO --- */
 /* ========================================= */
@@ -176,24 +153,21 @@ section {
 }
 
 .espaco-mapa {
-    margin-top: 40px; /* Espaço acima do mapa */
+    margin-top: 40px;
 }
 
-/* Estilo para o texto do endereço */
 .endereco {
     font-size: 18px;
     line-height: 1.6;
     color: #555;
-    margin-bottom: 20px; /* Espaço entre o texto e o mapa */
+    margin-bottom: 20px;
 }
 
-/* Estilo para o mapa (bordas arredondadas e sombra) */
 .espaco-mapa iframe {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     width: 100%;
 }
-
 
 /* ========================================= */
 /* --- RODAPÉ E BOTÃO WHATSAPP --- */
@@ -224,7 +198,6 @@ footer {
 /* ========================================= */
 /* --- CARROSSEL INFINITO CSS --- */
 /* ========================================= */
-
 .carousel {
     max-width: 100%; 
     overflow: hidden;
@@ -239,7 +212,7 @@ footer {
     display: flex;
     gap: 20px; 
     flex-shrink: 0;
-    justify-content: space-around;
+    /* justify-content: space-around; <-- REMOVIDO PARA CORRIGIR O BUG */
     min-width: 100%;
     animation: scrolling 30s linear infinite;
 }
@@ -249,12 +222,8 @@ footer {
 }
 
 @keyframes scrolling {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 .carousel-card {
@@ -296,10 +265,15 @@ footer {
 /* --- RESPONSIVIDADE PARA CELULARES --- */
 /* ========================================= */
 @media (max-width: 768px) {
-    #inicio {
+    #inicio, #espaco {
         flex-direction: column;
     }
     
+    header nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
     .hero-image {
         padding-left: 0;
         margin-top: 30px;
@@ -312,6 +286,4 @@ footer {
     .sobre-imagem-unica img {
         width: 100%;
     }
-    
 }
-
