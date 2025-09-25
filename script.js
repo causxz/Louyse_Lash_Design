@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 groups.forEach(group => {
                     group.classList.remove('paused');
                 });
-            }, 3000);
+            }, 2000);
         });
     });
+
 });
