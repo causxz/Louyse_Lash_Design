@@ -1,34 +1,56 @@
-// Arquivo: script.js (Versão Final com 'touchstart' para mobile)
+// Arquivo: script.js (Versão Definitiva e Robusta)
 
 document.addEventListener('DOMContentLoaded', function() {
     const carousels = document.querySelectorAll('.carousel');
-    const isHoverDevice = window.matchMedia('(hover: hover)').matches;
 
     carousels.forEach(carousel => {
         const track = carousel.querySelector('.carousel-track');
-        let pauseTimer;
+        let touchTimer = null; // Timer específico para eventos de toque/clique
+        let isHovered = false; // Controla se o mouse está sobre o elemento
 
-        if (isHoverDevice) {
-            // LÓGICA PARA DISPOSITIVOS COM MOUSE (DESKTOP)
-            carousel.addEventListener('mouseenter', () => {
-                track.classList.add('paused');
-            });
+        // --- LÓGICA DE PAUSA E RESUME ---
 
-            carousel.addEventListener('mouseleave', () => {
-                track.classList.remove('paused');
-            });
-        } else {
-            // LÓGICA PARA DISPOSITIVOS DE TOQUE (CELULAR)
-            carousel.addEventListener('touchstart', () => { // << MUDANÇA PRINCIPAL AQUI
-                if (pauseTimer) {
-                    clearTimeout(pauseTimer);
+        const pauseAnimation = () => {
+            track.classList.add('paused');
+        };
+
+        const resumeAnimation = () => {
+            track.classList.remove('paused');
+        };
+
+        // --- EVENTOS DE MOUSE (PARA DESKTOP) ---
+
+        carousel.addEventListener('mouseenter', () => {
+            isHovered = true;
+            pauseAnimation();
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isHovered = false;
+            // Só volta a rolar se não houver um timer de toque ativo
+            if (!touchTimer) {
+                resumeAnimation();
+            }
+        });
+
+        // --- EVENTO DE CLIQUE (PARA TOQUE NO CELULAR) ---
+
+        carousel.addEventListener('click', () => {
+            // Limpa qualquer timer anterior para reiniciar a contagem
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+            }
+
+            pauseAnimation();
+
+            // Define um timer para voltar a rolar após 2 segundos
+            touchTimer = setTimeout(() => {
+                // Só volta a rolar se o mouse não estiver em cima (relevante para desktops)
+                if (!isHovered) {
+                    resumeAnimation();
                 }
-                track.classList.add('paused');
-
-                pauseTimer = setTimeout(() => {
-                    track.classList.remove('paused');
-                }, 2000); // Pausa por 2 segundos
-            });
-        }
+                touchTimer = null; // Limpa a referência do timer
+            }, 2000); // 2 segundos
+        });
     });
 });
