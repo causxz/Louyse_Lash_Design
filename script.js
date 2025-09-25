@@ -1,31 +1,39 @@
-// Arquivo: script.js (Versão Corrigida para Múltiplos Timers)
+// Arquivo: script.js (Versão Final com Hover e Toque)
 
 document.addEventListener('DOMContentLoaded', function() {
     // Seleciona todos os carrosséis da página
     const carousels = document.querySelectorAll('.carousel');
     
     carousels.forEach(carousel => {
+        let pauseTimer; // Cada carrossel terá sua própria variável de timer
+
+        // --- LÓGICA PARA O CLIQUE/TOQUE (MOBILE) ---
         carousel.addEventListener('click', function() {
-            // Verifica se este carrossel específico já tem um timer ativo e o limpa
-            if (carousel.dataset.pauseTimer) {
-                clearTimeout(carousel.dataset.pauseTimer);
+            if (pauseTimer) {
+                clearTimeout(pauseTimer);
             }
 
-            // Pausa a animação apenas nos grupos de imagens DESTE carrossel
             const groups = carousel.querySelectorAll('.group');
-            groups.forEach(group => {
-                group.classList.add('paused');
-            });
+            groups.forEach(group => group.classList.add('paused'));
 
-            // Cria um novo timer e guarda a referência dele diretamente no elemento do carrossel
-            const newTimer = setTimeout(() => {
-                groups.forEach(group => {
-                    group.classList.remove('paused');
-                });
-            }, 2000); // 3 segundos de pausa
+            pauseTimer = setTimeout(() => {
+                groups.forEach(group => group.classList.remove('paused'));
+            }, 3000);
+        });
 
-            carousel.dataset.pauseTimer = newTimer;
+        // --- LÓGICA PARA O MOUSE HOVER (DESKTOP) ---
+        carousel.addEventListener('mouseenter', function() {
+            const groups = carousel.querySelectorAll('.group');
+            groups.forEach(group => group.classList.add('paused'));
+        });
+
+        carousel.addEventListener('mouseleave', function() {
+            // Se houver um timer de clique rodando, não faz nada para não interrompê-lo
+            if (pauseTimer) {
+                 clearTimeout(pauseTimer);
+            }
+            const groups = carousel.querySelectorAll('.group');
+            groups.forEach(group => group.classList.remove('paused'));
         });
     });
 });
-
