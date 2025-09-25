@@ -1,4 +1,4 @@
-// Arquivo: script.js (Versão Definitiva com Detecção de Hover/Toque)
+// Arquivo: script.js (Versão Final com 'touchstart' para mobile)
 
 document.addEventListener('DOMContentLoaded', function() {
     const carousels = document.querySelectorAll('.carousel');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } else {
             // LÓGICA PARA DISPOSITIVOS DE TOQUE (CELULAR)
-            carousel.addEventListener('click', () => {
+            carousel.addEventListener('touchstart', () => { // << MUDANÇA PRINCIPAL AQUI
                 if (pauseTimer) {
                     clearTimeout(pauseTimer);
                 }
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 pauseTimer = setTimeout(() => {
                     track.classList.remove('paused');
-                }, 3000); // Pausa por 3 segundos
+                }, 2000); // Pausa por 2 segundos
             });
         }
     });
