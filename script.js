@@ -1,30 +1,30 @@
-// Arquivo: script.js
+// Arquivo: script.js (Versão Corrigida para Múltiplos Timers)
 
 document.addEventListener('DOMContentLoaded', function() {
     // Seleciona todos os carrosséis da página
     const carousels = document.querySelectorAll('.carousel');
     
-    // Variável para controlar o timer
-    let pauseTimer;
-
     carousels.forEach(carousel => {
         carousel.addEventListener('click', function() {
-            // Limpa qualquer timer anterior para evitar múltiplos resumes
-            clearTimeout(pauseTimer);
+            // Verifica se este carrossel específico já tem um timer ativo e o limpa
+            if (carousel.dataset.pauseTimer) {
+                clearTimeout(carousel.dataset.pauseTimer);
+            }
 
-            // Pausa a animação de todos os grupos de imagens
+            // Pausa a animação apenas nos grupos de imagens DESTE carrossel
             const groups = carousel.querySelectorAll('.group');
             groups.forEach(group => {
                 group.classList.add('paused');
             });
 
-            // Cria um timer para remover a pausa depois de 3 segundos (3000 milissegundos)
-            pauseTimer = setTimeout(() => {
+            // Cria um novo timer e guarda a referência dele diretamente no elemento do carrossel
+            const newTimer = setTimeout(() => {
                 groups.forEach(group => {
                     group.classList.remove('paused');
                 });
-            }, 2000);
+            }, 3000); // 3 segundos de pausa
+
+            carousel.dataset.pauseTimer = newTimer;
         });
     });
-
 });
