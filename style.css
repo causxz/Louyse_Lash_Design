@@ -4,7 +4,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; /* Uma fonte limpa e legível */
-    background-image: url('images/fundos/background.jpg'); /* Caminho para sua imagem de fundo */
+    background-image: url('images/fundos/fundo2.jpg'); /* Caminho para sua imagem de fundo */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* O fundo fica parado enquanto a página rola */
@@ -313,4 +313,5 @@ footer {
         width: 100%;
     }
     
+
 }
