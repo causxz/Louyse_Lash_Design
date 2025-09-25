@@ -211,6 +211,10 @@ footer {
     animation: scrolling 30s linear infinite; /* A ANIMAÇÃO ESTÁ AQUI */
 }
 
+.carousel:hover .carousel-track {
+    animation-play-state: paused;
+}
+
 .carousel .group {
     display: flex;
     gap: 20px;
@@ -288,5 +292,6 @@ footer {
         width: 100%;
     }
 }
+
 
 
