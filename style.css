@@ -221,9 +221,6 @@ footer {
     animation-play-state: paused;
 }
 
-.carousel:hover .carousel-track {
-    animation-play-state: paused;
-}
 
 @keyframes scrolling {
     0% { transform: translateX(0); }
@@ -291,4 +288,5 @@ footer {
         width: 100%;
     }
 }
+
 
