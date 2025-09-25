@@ -283,11 +283,12 @@ footer {
         margin-top: 30px;
     }
 
-    .carousel .group {
-        animation-duration: 20s;
+    .carousel-track {
+        animation-duration: 15s;
     }
 
     .sobre-imagem-unica img {
         width: 100%;
     }
 }
+
