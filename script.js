@@ -32,8 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (pauseTimer) {
                  clearTimeout(pauseTimer);
             }
-            const groups = carousel.querySelectorAll('.group');
-            groups.forEach(group => group.classList.remove('paused'));
+        const track = carousel.querySelector('.carousel-track');
+        track.classList.add('paused');
+
         });
     });
 });
+
